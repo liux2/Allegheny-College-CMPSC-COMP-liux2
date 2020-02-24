@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Input</title>
+  </head>
+  <body>
+    <!-- Prompt for account login register -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          {{message}}
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <ul>
+      <li>Please choose three days of this week, on each day:</li>
+      <ul>
+        <li><b>Option 1:</b> Provide more than a paragraph of text of any form
+          (e.g. diary) that best describes your emotion or experiences.
+        </li>
+        <li><b>Option 2:</b> Provide more than a paragraph of conversation or
+          summarization (e.g. TV scripts or TV scene summarization) that is coming
+          from a strong emotional scene.
+        </li>
+      </ul>
+      <li>Please give a descriptive title to your text.</li>
+    </ul>
+
+    <form method="POST">
+      Title of text: <input type="text" name="title"><br>
+      <textarea name = "text" rows="25" cols="80"></textarea><br>
+      <input type="submit" value="Submit">
+    </form>
+    <a href="{{url_for('logout')}}">Quit</a><br>
+  </body>
+</html>

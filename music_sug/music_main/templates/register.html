@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Register</title>
+  </head>
+  <body>
+    <!-- Prompt for account login register -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          {{message}}
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <h1>Register</h1>
+    <form method="POST" action="">
+      <p>This is a minimal viable product. Some function are not implemented.
+        If it <b>does not register successfully</b> after submit, it is either <b>the user
+        name is taken</b> or <b>the password does not match</b>.</p>
+      {{form.hidden_tag()}}
+
+      {{form.username.label()}}
+      {{form.username()}}<br>
+
+      {{form.password.label()}}
+      {{form.password()}}<br>
+
+      {{form.confirm_password.label()}}
+      {{form.confirm_password()}}<br>
+
+      {{form.submit()}}<br>
+    </form>
+    <a href="{{url_for('login')}}">Already have an account?</a><br>
+    <a href="{{url_for('home')}}">Go back to homepage</a>
+  </body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Home</title>
+  </head>
+  <body>
+    <!-- Prompt for account login register -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          {{message}}
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <h1>Register or Login</h1>
+
+    <h3>Project introduction:</h3>
+
+    <p>This project is trying to use an alternative way to recommend songs to users.
+       The mainstream music service providers utilize user browsing and listening
+       history along with the user playlist cross-comparison of other users with
+       similar habits to recommend music to users.  Instead of utilizing user
+       browsing history or any other recorded interactions, our system tries to
+       find the user's current emotion by asking a user for input text about feelings.
+       It can be a diary, a transcribed conversation, or a show script. These texts
+       have a high possibility of containing the users’ current emotional state
+       and they can be used to predict desired musical themes of the users. The
+       purpose of the user study is to verify the efficiency of this software
+       system which asks for texts that may contain current emotional state and
+       experience recount.  The texts provided by participants will be used to
+       find songs related to the emotion or the story behind the texts. Participants
+       will have the choice to answer questions that would be used to determine
+       the efficiency of mapping descriptive text and related songs.
+     </p>
+
+    <h3>Data usage:</h3>
+
+    <p>This research is anonymous, the IP addresses and other information that
+       could associate with the participants will be deleted before analyzing the
+       data. The data will be kept for four years for possible further study, and
+       they will be deleted after four years. The information required for the
+       registration will be the username and password. If you wish to receive a
+       copy of the result, please answer “yes” in the google survey form under
+       the result disclosure section.
+    </p>
+
+    <h3>Quit the survey:</h3>
+
+    <p>If you feel uncomfortable in any of the sections during the process, you
+       can just click the quit button. If you decide not to participate anymore,
+       you can email me and require data deletion. My information is down below
+       this page.
+    </p>
+
+    <h3>Compensation:</h3>
+
+    <p>All people who participated in this project will have the opportunity to
+       join a lottery and win a $20 Amazon gift card. Please answer “yes” in the
+       google survey form under the lottery section if you want to participate.
+       I will email you if you win the gift card.
+    </p>
+
+    <h3>Contact information:</h3>
+
+    <p>If you have any questions, please contact us.<p>
+
+    <b>Xingbang Liu:</b>
+    <p>Phone - <a href="tel:814-795-0122">(814)-795-0122</a><br>
+       E-mail - <a href="mailto:liux2@allegheny.edu">liux2@allegheny.edu</a></p>
+
+    <b>Professor Janyl Jumadinova:</b>
+    <p>E-mail - <a href="mailto:jjumadinova@allegheny.edu">jjumadinova@allegheny.edu</a></p>
+
+    <b>Next step:</b>
+
+    <p>If you already have an account, please log in, if you do not have an account, please register.</p>
+
+
+    <a href="{{url_for('register')}}">Register</a><br>
+    <a href="{{url_for('login')}}">Login</a><br>
+    <a href="{{url_for('logout')}}">Logout</a><br>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+urllib2 = "*"
+
+[packages]
+flask = "*"
+flask-wtf = "*"
+flask-sqlalchemy = "*"
+flask-bcrypt = "*"
+flask-login = "*"
+lyricsgenius = "*"
+
+[requires]
+python_version = "3.7"
+
+[scripts]
+music = "./scripts/music.sh"
