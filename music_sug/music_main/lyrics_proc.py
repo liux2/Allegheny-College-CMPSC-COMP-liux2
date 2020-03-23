@@ -2,7 +2,9 @@ import re
 import csv
 import spacy
 import lyricsgenius
+from os import listdir
 from music_main import db
+from os.path import isfile, join
 from music_main.models import Lyrics
 from spacy_langdetect import LanguageDetector
 from music_main.text_proc import word_bag_list, compare_sum
@@ -11,16 +13,18 @@ from music_main.text_proc import word_bag_list, compare_sum
 def song_csv():
     """Utilize lyrics csv"""
     song_list = []
-    with open(
-        "playlist/POP Music Playlist - Best POP Hits of All Time (Updated in 2020).csv",
-        "r",
-    ) as f:
-        csv_reader = csv.reader(f)
-        # Skip the header
-        next(csv_reader)
-        for row in f:
-            row_list = row.replace('"', "").replace("\n", "").split(",")
-            song_list.append(row_list)
+    playlist_files = [f for f in listdir("playlist/") if isfile(join("playlist/", f))]
+    for file in playlist_files:
+        with open(
+            "playlist/POP Music Playlist - Best POP Hits of All Time (Updated in 2020).csv",
+            "r",
+        ) as l:
+            csv_reader = csv.reader(l)
+            # Skip the header
+            next(csv_reader)
+            for row in l:
+                row_list = row.replace('"', "").replace("\n", "").split(",")
+                song_list.append(row_list)
     return song_list
 
 
