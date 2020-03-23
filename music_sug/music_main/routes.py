@@ -66,7 +66,7 @@ def register():
     form = RegistritionForm()
     if form.validate_on_submit():
         # encrypt the user
-        hased_password = bcrypt.generate_password_hash(form.username.data).decode(
+        hased_password = bcrypt.generate_password_hash(form.password.data).decode(
             "utf-8"
         )
         # add user to the database
