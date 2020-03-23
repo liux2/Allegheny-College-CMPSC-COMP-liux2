@@ -27,16 +27,20 @@ class Input(db.Model):
     content = db.Column(db.Text, nullable=False)
     # User was auto set to lowercase, so user.id
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    text_sum = db.Column(db.JSON, nullable=False)
+    lyrics_id = db.Column(db.JSON, nullable=False)
 
     def __repr__(self):
         return f"Input('{self.title}')"
 
 
 ## music lyrics table
-class lyrics(db.Model):
+class Lyrics(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     song = db.Column(db.String(100), nullable=False)
+    song_author = db.Column(db.String(100), nullable=False)
     song_lyrics = db.Column(db.Text, nullable=False)
+    lyrics_sum = db.Column(db.JSON, nullable=False)
 
     def __repr__(self):
-        return f"Input('{self.song}')"
+        return f"Lyrics('{self.song}','{self.song_author}')"

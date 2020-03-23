@@ -4,7 +4,15 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-urllib2 = "*"
+spacy = "*"
+networkx = "*"
+graphviz = "*"
+pytextrank = "*"
+numpy = "*"
+pip = "*"
+six = "*"
+py-stringmatching = "*"
+spacy-langdetect = "*"
 
 [packages]
 flask = "*"
@@ -19,3 +27,7 @@ python_version = "3.7"
 
 [scripts]
 music = "./scripts/music.sh"
+setup = "./scripts/setup.sh"
+
+[pipenv]
+allow_prereleases = true

@@ -5,9 +5,15 @@
     <title>Survey</title>
   </head>
   <body>
+    <h1>Results:</h1>
+    <p><b>Recommended Playlist:</b></p>
+    {% for s, a in play_list.items() %}
+    <p><b>{{ s }}</b> by <b>{{ a }}</b></p>
+    {% endfor %}
+    <br>
     <h1>Survey:</h1>
-    <p>Please click this <a href="">link</a> for the survey.</p>
-    <p>Please click this <a href="">link</a> for research results and compensation.</p>
+    <p>Please click this <a href="https://forms.gle/yGY4H2uYBVjdd9596">link</a> for the survey.</p>
+    <p>Please click this <a href="https://forms.gle/FXDG5TMnohYEUZXe6">link</a> for research results and compensation.</p>
     <!-- <h1>Top keywords:</h1> -->
     <a href="{{url_for('home')}}">Back to Home</a><br>
     <a href="{{url_for('logout')}}">Quit</a><br>

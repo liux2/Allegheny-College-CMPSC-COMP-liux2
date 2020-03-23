@@ -354,3 +354,7 @@ tags.tmp
 *.xmi
 *.sync
 *.jekyll-metadata
+
+# ssh
+*.ssh
+*.pem

@@ -1,9 +1,11 @@
-from flask import request, render_template, redirect, url_for, flash
-from music_main.reg import RegistritionForm, LogInForm
-from music_main.models import User, Input
-from music_main import app, db, bcrypt
-from flask_login import login_user, current_user, logout_user
 import os
+from music_main import app, db, bcrypt
+from music_main.lyrics_proc import lyrics_main
+from music_main.models import User, Input, Lyrics
+from music_main.reg import RegistritionForm, LogInForm
+from music_main.text_proc import word_bag_list, compare_sum
+from flask_login import login_user, current_user, logout_user
+from flask import request, render_template, redirect, url_for, flash
 
 
 @app.route("/")
@@ -30,11 +32,30 @@ def my_form_post():
         os.makedirs(path)
     with open("texts/%s/%s.txt" % (current_user.get_id(), title_name), "w+") as f:
         f.write(processed_text)
+    # sum text string
+    summed_text_list = word_bag_list(processed_text)
+    # loop though lyrics db, find the best 5 matches, put the top one in field
+    lyric_sum_data = Lyrics.query.all()
+    score_list = []
+    for summed in lyric_sum_data:
+        score_flot = compare_sum(summed_text_list, summed.lyrics_sum)
+        if len(score_list) < 5:
+            score_list.append((summed.id, score_flot))
+        score_list.sort()
+        if score_list[0][1] < score_flot:
+            score_list[0] = (summed.id, score_flot)
     # write user inputs into db
-    input = Input(title=title_name, content=processed_text, author=current_user)
+    input = Input(
+        title=title_name,
+        content=processed_text,
+        author=current_user,
+        text_sum=summed_text_list,
+        lyrics_id=score_list,
+    )
     db.session.add(input)
     db.session.commit()
-    return redirect(url_for("survey"))  # redirect to survey
+    # redirect to survey
+    return redirect(url_for("survey", text_title=title_name))
 
 
 # register page
@@ -80,27 +101,27 @@ def login():
 
 
 # survey page to present
-@app.route("/survey")
-def survey():
-    survey = {}
-    # show survey
-    # with open("texts/%s.txt" % title_name, "rt") as f:
-    #     inputs = f.read()
-    # action of text processing
-
-    # add value to dictionary
-    # survey["inputs"] = inputs
-    return render_template("survey.html", survey=survey)
+@app.route("/survey/<text_title>")
+def survey(text_title):
+    result_list = Input.query.filter_by(title=text_title).first().lyrics_id
+    play_list = {}
+    for result in result_list:
+        get_song = Lyrics.query.filter_by(id=result[0]).first().song
+        get_author = Lyrics.query.filter_by(id=result[0]).first().song_author
+        play_list[get_song] = get_author
+    return render_template("survey.html", play_list=play_list)
 
 
 # result page to return to home page
 @app.route("/survey", methods=["POST"])
 def back_home():
-    return redirect(url_for("home"))  # redirect to home
+    # redirect to home
+    return redirect(url_for("home"))
 
 
 # logout route for user to Quit
 @app.route("/logout")
 def logout():
     logout_user()
-    return redirect(url_for("home"))  # redirect to home
+    # redirect to home
+    return redirect(url_for("home"))
