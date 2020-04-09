@@ -15,10 +15,7 @@ def song_csv():
     song_list = []
     playlist_files = [f for f in listdir("playlist/") if isfile(join("playlist/", f))]
     for file in playlist_files:
-        with open(
-            "playlist/POP Music Playlist - Best POP Hits of All Time (Updated in 2020).csv",
-            "r",
-        ) as l:
+        with open("playlist/" + file, "r",) as l:
             csv_reader = csv.reader(l)
             # Skip the header
             next(csv_reader)
