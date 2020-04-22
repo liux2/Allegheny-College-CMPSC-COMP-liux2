@@ -99,7 +99,7 @@ directory. The bash script is `music_sug/scripts/test.sh`.
 To deploy the project, first install the dependencies, then use `pipenv run setup`
 to install the language model, generate the database, and commit the lyrics model.
 
-The options for wen server could be [Nginx](https://nginx.org/en/docs/) and
+The options for the web server could be [Nginx](https://nginx.org/en/docs/) and
 [gunicorn](https://gunicorn.org/).
 
 #### Nginx
