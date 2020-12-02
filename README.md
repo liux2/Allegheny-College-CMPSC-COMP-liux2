@@ -1,4 +1,4 @@
-# Allegheny-College-CMPSC-COMP-liux2
+# Allegheny College CMPSC COMP-liux2
 
 The COMP project for Allegheny College Computer Science department class of 2020.
 This project implemented a system to recommend music tracks based on user-submitted
