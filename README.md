@@ -5,7 +5,7 @@ This project implemented a system to recommend music tracks based on user-submit
 texts. The text can be the form of diary or video transcribes, which could contain
 users’ current emotions. The recommended music can be got by matching the text with
 the song lyrics. By using the system, people can fill their emotional needs whenever
-they want. The website of the system is [music.xingbangliu.io](music.xingbangliu.io).
+they want. The website of the system is [music.xingbangliu.io](http://music.xingbangliu.io).
 
 ## Getting Started
 
